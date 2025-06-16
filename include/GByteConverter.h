@@ -61,7 +61,7 @@ TBytesToStrError GByteConverter<N>::BytesToStr(uint8_t* Bytes, int ByteCount, TI
     if (ByteCount >= N)
     {
         ConvertedByteCount = N;
-        uint64_t ConvertedInt = CalculateGByte<N>(Bytes);
+        uint64_t ConvertedInt = CalculateGByte<N>(Bytes) & 0xFFFFFFFF;
 
         switch (IntegerDisplayOption)
         {

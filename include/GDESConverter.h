@@ -41,19 +41,19 @@ TBytesToStrError GDESConverter::BytesToStr(uint8_t* Bytes, int ByteCount, TInteg
     {
         ConvertedByteCount = 10;
 
-        uint64_t firstHalf =
-              (static_cast<uint64_t>(Bytes[0]) << (7 * 4)) // alternative version with no -32 offset
-            + (static_cast<uint64_t>(Bytes[1] - 32) << (7 * 3))
-            + (static_cast<uint64_t>(Bytes[2] - 32) << (7 * 2))
-            + (static_cast<uint64_t>(Bytes[3] - 32) << (7 * 1))
-            + (static_cast<uint64_t>(Bytes[4] - 32));
+        uint32_t firstHalf =
+              (static_cast<uint32_t>((Bytes[0] - 32) & 0x0F) << (7 * 4))
+            + (static_cast<uint32_t>((Bytes[1] - 32) & 0x7F) << (7 * 3))
+            + (static_cast<uint32_t>((Bytes[2] - 32) & 0x7F) << (7 * 2))
+            + (static_cast<uint32_t>((Bytes[3] - 32) & 0x7F) << (7 * 1))
+            + (static_cast<uint32_t>((Bytes[4] - 32) & 0x7F));
 
-        uint64_t secondHalf =
-              (static_cast<uint64_t>(Bytes[5]) << (7 * 4)) // alternative version with no -32 offset
-            + (static_cast<uint64_t>(Bytes[6] - 32) << (7 * 3))
-            + (static_cast<uint64_t>(Bytes[7] - 32) << (7 * 2))
-            + (static_cast<uint64_t>(Bytes[8] - 32) << (7 * 1))
-            + (static_cast<uint64_t>(Bytes[9] - 32));
+        uint32_t secondHalf =
+              (static_cast<uint32_t>((Bytes[5] - 32) & 0x0F) << (7 * 4))
+            + (static_cast<uint32_t>((Bytes[6] - 32) & 0x7F) << (7 * 3))
+            + (static_cast<uint32_t>((Bytes[7] - 32) & 0x7F) << (7 * 2))
+            + (static_cast<uint32_t>((Bytes[8] - 32) & 0x7F) << (7 * 1))
+            + (static_cast<uint32_t>((Bytes[9] - 32) & 0x7F));
 
         uint8_t desKey[8] =
         {
