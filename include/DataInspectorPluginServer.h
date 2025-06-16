@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "DataInspectorShared.h"
+#include "DataInspectorPluginInterface.h"
 
 class TExternalDataTypeConverter
 {
@@ -31,8 +32,8 @@ protected:
 private:
     std::wstring FLastReturnedString;
     std::vector<uint8_t> FLastReturnedByteArray;
-    friend TBytesToStrError __stdcall BytesToStr(void*, uint8_t*, int, TIntegerDisplayOption, int*, const wchar_t**);
-    friend TStrToBytesError __stdcall StrToBytes(void*, const wchar_t*, TIntegerDisplayOption, uint8_t**, int*);
+    friend HXDGRAAL_EXPORT TBytesToStrError __stdcall BytesToStr(void*, uint8_t*, int, TIntegerDisplayOption, int*, const wchar_t**);
+    friend HXDGRAAL_EXPORT TStrToBytesError __stdcall StrToBytes(void*, const wchar_t*, TIntegerDisplayOption, uint8_t**, int*);
 
     // Getters
 public:

@@ -6,6 +6,7 @@
 
 #include "DataInspectorPluginServer.h"
 #include "DataInspectorShared.h"
+#include "DataInspectorPluginInterface.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -20,6 +21,15 @@ void TExternalDataTypeConverter::Assign(TExternalDataTypeConverter* Source)
 
     FLastReturnedString = Source->FLastReturnedString;
     FLastReturnedByteArray = Source->FLastReturnedByteArray;
+}
+
+//----------------------------
+
+std::vector<TConverterClassID> InternalClassIDsOrFactoryFuncs;
+
+void RegisterDataTypeConverter(TExternalDataTypeConverterFactoryFunction ConverterFactoryFunc)
+{
+    InternalClassIDsOrFactoryFuncs.push_back(ConverterFactoryFunc);
 }
 
 //----------------------------
@@ -84,13 +94,6 @@ TStrToBytesError __stdcall StrToBytes(void* ThisPtr, const wchar_t* Str, TIntege
 
     *ConvertedByteCount = (int)Converter->FLastReturnedByteArray.size();
     return result;
-}
-
-std::vector<TConverterClassID> InternalClassIDsOrFactoryFuncs;
-
-void RegisterDataTypeConverter(TExternalDataTypeConverterFactoryFunction ConverterFactoryFunc)
-{
-    InternalClassIDsOrFactoryFuncs.push_back(ConverterFactoryFunc);
 }
 
 BOOL __stdcall GetDataTypeConverterClassIDs(PConverterClassID* ClassIDsOrFactoryFuncs, int* Count)

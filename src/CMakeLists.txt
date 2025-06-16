@@ -1,4 +1,1 @@
-﻿target_sources(HxDGraal PRIVATE
-	DataInspectorPluginServer.cpp
-	dllmain.cpp
-)
+﻿target_sources(HxDGraal PRIVATE "dllmain.cpp" "DataInspectorPluginServer.cpp" "HxDGraal.def")

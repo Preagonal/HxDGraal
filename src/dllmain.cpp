@@ -3,7 +3,9 @@
 
 #include "DataInspectorPluginServer.h"
 #include "GByteConverter.h"
+#include "GByte5aConverter.h"
 #include "GModTimeConverter.h"
+#include "GDESConverter.h"
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
@@ -15,7 +17,9 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
             RegisterDataTypeConverter(GByteConverter<3>::Create);
             RegisterDataTypeConverter(GByteConverter<4>::Create);
             RegisterDataTypeConverter(GByteConverter<5>::Create);
+            RegisterDataTypeConverter(GByte5aConverter::Create);
             RegisterDataTypeConverter(GModTimeConverter::Create);
+            RegisterDataTypeConverter(GDESConverter::Create);
             break;
 
         case DLL_THREAD_ATTACH:

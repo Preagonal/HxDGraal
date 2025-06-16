@@ -15,8 +15,14 @@ set(CMAKE_SHARED_LIBRARY_ENABLE_EXPORTS ON)
 set(ENABLE_EXPORTS ON)
 
 # Project setup
-project(HxDGraal LANGUAGES C CXX)
+project(HxDGraal LANGUAGES CXX)
+
+# Add library.
 add_library(HxDGraal SHARED)
+
+# Annoying.
+#include(GenerateExportHeader)
+#generate_export_header(HxDGraal)
 
 # Compiler setup
 set_property(TARGET HxDGraal PROPERTY CXX_STANDARD 23)
