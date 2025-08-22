@@ -32,13 +32,13 @@ public:
     template<size_t Count>
     uint64_t CalculateGByte(uint8_t* bytes) const
     {
-        return (static_cast<uint64_t>(bytes[0] - 32) << (7 * (Count - 1))) + CalculateGByte<Count - 1>(bytes + 1);
+        return (static_cast<uint64_t>(static_cast<uint8_t>(bytes[0] - 32)) << (7 * (Count - 1))) + CalculateGByte<Count - 1>(bytes + 1);
     }
 
     template<>
     uint64_t CalculateGByte<1>(uint8_t* bytes) const
     {
-        return bytes[0] - 32;
+        return static_cast<uint8_t>(bytes[0] - 32);
     }
 
     template<>

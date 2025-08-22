@@ -5,6 +5,8 @@
 #include "GByteConverter.h"
 #include "GModTimeConverter.h"
 #include "GDESConverter.h"
+#include "GPixelCoordConverter.h"
+#include "GTileCoordConverter.h"
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
@@ -18,6 +20,8 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
             RegisterDataTypeConverter(GByteConverter<5>::Create);
             RegisterDataTypeConverter(GModTimeConverter::Create);
             RegisterDataTypeConverter(GDESConverter::Create);
+            RegisterDataTypeConverter(GPixelCoordConverter::Create);
+            RegisterDataTypeConverter(GTileCoordConverter::Create);
             break;
 
         case DLL_THREAD_ATTACH:
