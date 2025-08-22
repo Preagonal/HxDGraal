@@ -41,7 +41,7 @@ TBytesToStrError GTileCoordConverter::BytesToStr(uint8_t* Bytes, int ByteCount, 
     if (ByteCount >= 1)
     {
         ConvertedByteCount = 1;
-        float tileUnsigned = (Bytes[1] - 32) / 2.0f;
+        float tileUnsigned = static_cast<uint8_t>(Bytes[1] - 32) / 2.0f;
 		float tileSigned = static_cast<int8_t>(Bytes[1] - 32) / 2.0f;
 
         if (Bytes[1] < 236)
