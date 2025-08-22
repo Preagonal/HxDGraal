@@ -47,8 +47,12 @@ TBytesToStrError GPixelCoordConverter::BytesToStr(uint8_t* Bytes, int ByteCount,
 
         bool isNegative = (pixelPosition & 0x1) != 0;
         pixelPosition >>= 1;
+        if (isNegative)
+			pixelPosition = -pixelPosition;
 
-		ConvertedStr = std::format(L"{}", isNegative ? -pixelPosition : pixelPosition);
+        float tilePosition = pixelPosition / 16.0f;
+
+		ConvertedStr = std::format(L"{} ({:.2f})", pixelPosition, tilePosition);
         return btseNone;
     }
     else
